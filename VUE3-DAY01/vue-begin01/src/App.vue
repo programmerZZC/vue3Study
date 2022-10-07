@@ -17,7 +17,7 @@ export default{
 <template>
   <div>
     <Hello1 v-if="isShow"/>
-    <button @click="isShow=!isShow">控制Hello组件</button>
+    <button @click="isShow=!isShow">控制Hello组件aaa</button>
   </div>
 </template>
 
