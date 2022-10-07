@@ -1,0 +1,40 @@
+<template>
+    <div>
+        <div>helloworld</div>
+        <button @click="counter++">改变msg</button>
+        <h2>{{counter}}</h2>
+    </div> 
+</template>
+<script>
+export default {
+    data(){
+        return {
+            counter:0
+        };
+    },
+    beforeCreate(){
+        console.log('beforeCreate');
+    },
+    created(){
+        console.log('beforeCreate');
+    },
+    beforeMount(){
+        console.log('beforeMount');
+    },
+    mounted(){
+        console.log('mounted');
+    },
+    beforeUpdate(){
+        console.log('beforeUpdate');
+    },
+    update(){
+        console.log('updated');
+    },
+    beforeUnmount(){
+        console.log('beforeUnmount');
+    },
+    unmounted(){
+        console.log('unmounted');
+    }
+}
+</script>
