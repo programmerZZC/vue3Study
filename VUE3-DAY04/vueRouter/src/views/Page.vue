@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Page页面</h2>
+        <h2>Page页面sss</h2>
         <button @click="goPage">跳转页面</button>
     </div>
 </template>
