@@ -14,13 +14,16 @@
       <router-link to="/">Go to Home</router-link>
       <router-link to="/about">Go to About</router-link>
       <router-link to="/user/123">Go to User</router-link>
-      <router-link to="/news/456">Go to News</router-link>
+      <!-- <router-link to="/news/456">Go to News</router-link> -->
+      <router-link :to="{name:'news',params:{id:456}}">Go to News</router-link>
       <router-link to="/parent">Go to Parent</router-link>
       <router-link to="/page">Go to Page</router-link>
     </p>
     <!-- 路由出口，占位符-->
     <!-- 路由匹配到的组件将渲染在这里 -->
-    <router-view></router-view>
+    <router-view name="ShopTop"></router-view>
+    <router-view ></router-view>
+    <router-view name="ShopFoot"></router-view>
   </div>
 </template>
 

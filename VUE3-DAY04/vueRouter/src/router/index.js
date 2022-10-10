@@ -10,6 +10,9 @@ import Parent from '../views/Parent.vue'
 import Styleone from '../views/Styleone.vue'
 import Styletwo from '../views/Styletwo.vue'
 import Page from '../views/Page.vue'
+import ShopTop from '../views/ShopTop.vue'
+import ShopMain from '../views/ShopMain.vue'
+import ShopFoot from '../views/ShopFoot.vue'
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -52,6 +55,15 @@ const routes = [
   {
     path:"/page",
     component:Page
+  },
+  {
+    path:"/shop",
+    components:{
+      default:ShopMain,
+      // 它们与<router-view>上的name属性匹配
+      ShopTop:ShopTop,
+      ShopFoot:ShopFoot
+    }
   },
     // 404页面
   // 使用正则的方式，匹配任意的

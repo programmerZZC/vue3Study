@@ -15,8 +15,10 @@ export default {
         // 带参数
         // this.$router.push({path:"/user/123"})
         // this.$router.push({name:"news",params:{id:123}})
-        // 带问好
+        // 带问号
         this.$router.push({path:"/about",query:{name:"zhangsan"}})
+        // 替换当前位置
+        // this.$router.replace({path:"/about",query:{name:"zhangsan"},replace:true})
         }
     }
 }
