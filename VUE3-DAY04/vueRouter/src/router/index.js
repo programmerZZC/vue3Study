@@ -18,7 +18,19 @@ import ShopFoot from '../views/ShopFoot.vue'
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
 const routes = [
-  { path: '/', component: Home },
+  { 
+    path: '/', 
+    // 重定向
+    // redirect: "/home"
+    // 命名路由
+    // redirect: {name:"home"}
+    // 方法
+    redirect:(to)=>{
+      console.log(to);
+      return {path:"/home"}
+    }
+  },
+  { path: '/home', name:"home",component: Home },
   { path: '/about', component: About },
   // 动态路由
   { path: '/user/:id', component: User },
@@ -39,6 +51,7 @@ const routes = [
   
   { 
     path: '/parent', 
+    alias:['/father','/fuqin'], // 起别名
     component: Parent,
     children:[
         {
