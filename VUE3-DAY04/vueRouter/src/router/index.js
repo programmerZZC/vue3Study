@@ -1,7 +1,8 @@
-import {createRouter,createWebHashHistory} from 'vue-router'
+import {createRouter,createWebHashHistory,createWebHistory} from 'vue-router'
 // 1. 定义路由组件.
 // 也可以从其他文件导入
-import Home from '../views/Home.vue'
+// 静态导入
+// import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import User from '../views/User.vue'
 import NotFound from '../views/NotFound.vue'
@@ -13,7 +14,8 @@ import Page from '../views/Page.vue'
 import ShopTop from '../views/ShopTop.vue'
 import ShopMain from '../views/ShopMain.vue'
 import ShopFoot from '../views/ShopFoot.vue'
-
+// 路由懒加载，用到时再加载
+const Home=()=>import('../views/Home.vue')
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
@@ -30,10 +32,25 @@ const routes = [
       return {path:"/home"}
     }
   },
-  { path: '/home', name:"home",component: Home },
-  { path: '/about', component: About },
+  { 
+    path: '/home', 
+    name:"home",
+    component: Home
+  },
+  { 
+    path: '/about', 
+    component: About,
+    // 每路守卫（路由独享的守卫）
+    beforeEnter:(to,from,next)=>{ //token
+       console.log(to); 
+       console.log(from);
+       if(123==123){
+          next()
+       }
+    }
+  },
   // 动态路由
-  { path: '/user/:id', component: User },
+  { path: '/user/:id', component: User,props:true },
   // 动态路由的参数一定是数字
   { 
     // 动态路由参数为数字
@@ -70,13 +87,14 @@ const routes = [
     component:Page
   },
   {
-    path:"/shop",
+    path:"/shop/:id",
     components:{
       default:ShopMain,
       // 它们与<router-view>上的name属性匹配
       ShopTop:ShopTop,
       ShopFoot:ShopFoot
-    }
+    },
+    props:{default:true,ShopFoot:false,ShopTop:false}
   },
     // 404页面
   // 使用正则的方式，匹配任意的
@@ -88,7 +106,15 @@ const routes = [
 // 暂时保持简单
 const router = createRouter({
   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
-  history: createWebHashHistory(),
+  // history: createWebHashHistory(),
+  // hsitory模式,二者区别：有无#号
+  history:createWebHistory(),
   routes, // `routes: routes` 的缩写
 })
+// 全局守卫
+// router.beforeEach((to,from,next)=>{
+//   console.log(to);
+//   console.log(from);
+//   next() // 通行证
+// })
 export default router
